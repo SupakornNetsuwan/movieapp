@@ -1,13 +1,141 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.active{
+    left:0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.nav{
+    @apply z-40 fixed top-0 w-64 xl:w-72 h-screen shadow-xl
+    bg-white-2 flex flex-col border-r border-gray-2
+    rounded-tr-xl rounded-br-xl transition-all duration-500
+    ease-in-out xl:left-0 xl:rounded-none xl:shadow-inner;
+}
+
+.left-nav-btn{
+    @apply bg-gray-100 p-1.5 mr-5 rounded-lg transition-all duration-300 ease-out border border-gray-200 hover:bg-gray-200 hover:border-gray-300 group;
+}
+
+.left-nav-btn-active{
+    @apply w-full bg-red-1 p-1.5 mr-4 rounded-lg border-2 border-stroke-darker shadow-md;
+}
+
+.left-nav-icon-wrapper{
+    @apply p-1.5 bg-white-1 text-xl rounded-md text-icon group-hover:text-gray-600;
+}
+
+.left-nav-icon-wrapper-active{
+    @apply p-1.5 bg-white-1 text-xl rounded-md text-gold;
+}
+
+.search-btn{
+    @apply flex items-center px-3 py-1.5 xl:px-4 xl:py-2 space-x-1 bg-white-2 border border-gray-500
+    font-nunito font-semibold rounded-md opacity-100 transition-all duration-700 ease-in-out text-sm xl:text-base
+    hover:bg-gray-100 hover:shadow-sm;
+}
+
+.search-btn.active{
+    @apply opacity-0 transition-all duration-700;
+}
+
+/* In the main content */
+
+/* For loading more content */
+.loadmore-btn-wrapper{
+    @apply fixed bottom-0 left-0 w-full h-12 py-3 box-content z-40 transform translate-y-full duration-500 transition-all ease-in-out;
+    background: rgb(250,250,252);
+    background: linear-gradient(180deg, rgba(250,250,252,0) 7%, rgba(97,97,97,0.8603816526610644) 100%);
+}
+
+.loadmore-btn-wrapper.active{
+    @apply translate-y-0 transition-all duration-500 ease-in-out;
+}
+
+.loadmore-btn{
+    @apply fixed px-2 pl-4 py-1.5 flex items-center bg-red-1 bottom-3 left-1/2 font-nunito text-white
+    transform -translate-x-1/2 xl:translate-x-1/2 border-2 border-stroke-darker ring-2 ring-white ring-opacity-75 z-50 rounded-full;
+}
+
+.loading{
+    @apply text-3xl text-red-400 p-10 py-24 bg-gray-200 relative flex justify-center rounded-md animate-pulse;
+}
+
+.each-card{
+    @apply relative flex flex-col justify-center items-center h-full bg-gray-200 rounded-xl overflow-hidden border-b border-gray-400;
+}
+
+.each-card.top{
+    @apply border-red-1;
+}
+
+.poster-wrapper{
+    /* If you add sm:h-64 you will get a cropped poster size */
+    @apply sm:w-full bg-gray-400 md:h-64 lg:h-72
+    flex flex-col justify-center items-center gap-2;
+}
+
+.swiper-button-next , .swiper-button-prev{
+    --swiper-navigation-color:#e7e7e7;
+    margin:0 1rem 0 1.5rem;
+}
+
+@media only screen and (max-width:768px){
+    .swiper-button-next , .swiper-button-prev{
+        margin:0;
+    }
+}
+
+.movie-title{
+    @apply flex items-center text-center font-prompt font-normal sm:font-semibold text-sm px-2 py-3 sm:px-6 sm:py-4 lg:px-4 lg:py-2 lg:h-14 overflow-hidden;
+}
+
+.ranking-placement{
+    @apply absolute top-1.5 right-1.5 bg-red-1 text-white-1 py-1.5 px-2.5 rounded-lg shadow-md;
+}
+
+/* Landing.js */
+.statistic-detail-wrapper{
+    @apply w-full flex justify-between py-2.5 px-3 mb-2 lg:px-5 bg-white-1 shadow-sm border-b border-gray-300 rounded-md;
+}
+
+.statistic-value{
+    @apply font-prompt text-green-3 text-lg lg:text-xl font-medium;
+}
+
+/* Search modal in App.js */
+
+.search-modal{
+    @apply fixed -bottom-full w-screen h-screen z-50 transition-all duration-500 ease-in-out;
+}
+
+.search-modal.active{
+    @apply bottom-0 duration-700 transition-all ease-in-out;
+}
+
+.bg-search-modal{
+    @apply fixed -bottom-full left-0 w-screen h-screen bg-gradient-to-t from-gray-900 z-40 filter opacity-60
+    backdrop-filter backdrop-grayscale transition-all duration-500 ease-in-out;
+}
+
+.bg-search-modal.active{
+    @apply  bottom-0 duration-500 transition-all ease-in-out;
+}
+
+/* Search modal in Search.js */
+
+.page-btn{
+    @apply bg-gray-50 border ring-offset-1 ring-2 ring-gray-500 w-10 h-10 m-2 px-2 text-gray-800
+    flex justify-center items-center text-2xl rounded-md cursor-pointer hover:bg-gray-100 transition-all duration-150 opacity-100;
+}
+
+.page-btn.disabled{
+    @apply opacity-40 cursor-default transition-all duration-300
+}
+
+.tag-scoredate{
+    @apply flex items-center px-1.5 py-1 bg-gray-200 rounded-sm gap-x-1 text-gray-500 font-nunito text-sm;
 }
